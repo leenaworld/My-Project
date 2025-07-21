@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html >
+<head>
+    
+    <title>Document</title>
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function()
+       
+    {
+        // alert();
+        $("#chak").keyup(function()
+{
+    let Email=$(this).val();
+    let regex=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if(Email=="")
+{
+    $("#start").html("Empty");
+
+    $(this).focus();
+
+}
+else if(regex.test(Email)==false)
+                    {
+                        $("#start").html("Invalid Emailid");
+                         
+                         $(this).focus();
+                    }
+                    else(regex.test(Email)==true)
+                    {  
+                     $("#start").html("validEmailid");
+                         
+                         $(this).focus();
+
+
+                    }
+                
+
+
+})
+//...........
+$("#identity").keyup(function(){
+     let Password=$(this).val();
+    let regex=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+    if(Password=="")
+{
+    $("#j").html("Empty");
+
+    $(this).focus();
+}
+else if(regex.test(Password)==false)
+
+{  $("#j").html("Invalid");
+$(this).focus();
+
+                         
+
+
+
+}
+else(regex.test(Password)==true)
+
+{
+$("#j").html("valid");
+$(this).focus();
+
+
+}
+
+
+
+
+
+
+})
+//----------
+
+
+                         
+
+
+
+
+
+
+
+
+
+
+
+    })
+    </script>
+<style>
+body{ 
+    background-color: pink;
+}
+#box{
+    background-color:white;
+    width: 900px; height: 550px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+
+}
+.child{
+    background-color:white ;
+    width: 450px; height: 550px;
+    
+    
+}
+.baccha{
+    background-color:white;
+    width: 450px; height: 550px; 
+    margin:auto;
+     background-position: center;
+     
+
+    
+}
+.signup{
+    background-color: white;
+    text-align: center;
+    padding:10px;
+    margin-top: 30px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    font-size: large;
+
+
+}
+.hello{ border: 3px solid black;
+    width: 100px;
+    height: 25px;
+    border-radius: 4px;
+    float: left;
+    margin-left: 70px;
+    
+
+}
+.byee{ background-color: darkslateblue;
+    width: 400px;
+    height: 35px;
+border-radius: 5px;
+margin-top: 30px;
+}
+
+
+
+
+    </style>
+    </head>
+    <body>
+
+    <div id="box">
+        <div class="child" >
+            <img src="Nodejs-june-2025/pics/add16.jpg" width="350px" height="450px" style="margin-left: 50px; margin-top: 50px;  border-radius: 10px;">
+        </div>
+            <div class="baccha"> 
+                <div class="signup" >
+                   <b> SignUp </b>
+                   <br> as <br>
+
+                </div>
+                <div class="hello">
+                     <center style="margin-top: 5px;">
+                        
+                    <b> User </b>
+                     </center>
+                </div>
+                <div class="hello">
+                    <center style="margin-top: 5px;">
+                     <b>business</b>
+                    </center>
+
+                </div>
+                <div class="lbl-div" style="margin-top: 60px;">
+                        
+                        <input type="password" placeholder="First name"  > 
+                        
+                        
+                        <input type="password" placeholder="Last name"  >
+                        
+
+
+                    </div> 
+                    <div class="lbl-div" style="margin-top: 30px;">
+                     <div class="row" style="border:  1px black solid; width: 200px;">
+                        <input type="password" placeholder="E-mail" id="chak" style="border: 0px;">
+                        
+                            <i class="fa-solid fa-eye"></i>
+                            
+                             <div id="start" style=" width:10px; height:5px;">
+
+                            </div>  
+                    
+                        </div>
+                    
+                        
+                        
+                        
+                        
+
+                    </div>
+                    <div class="lbl-div" style="margin-top: 30px;">
+                        <div class="row" style="border:  1px black solid; width: 200px;">
+                        <input type="password" placeholder="Password" width="40%" id="identity" style="border:0px;" >
+                        
+                                  <i  class="fa-solid fa-eye">
+                            
+                        </i>
+                        </div>
+                          
+                        
+
+                        <div id="j">
+                            
+                            
+                        </div>
+                        
+                        </div>
+                        <div style="margin-top: 30px;">
+                             <input type="checkbox" name="rad" >I agree to the terms and condition
+                    
+                        </div>
+                        <div class="byee" >
+                            <center style="padding: 5px;">
+                               <b> SIGN UP</b>
+                            </center>
+
+                        </div>
+                        <div style="margin-top: 30px;">
+                       <center>Already have an account?</center>
+                       </div>
+                        <div style="color: blue;">
+                       <center> Login </center></div>
+                       <hr>
+                       <div style="border: solid black ;width: 90px ; border-radius: 5px; margin-left: 100px; float: left;">
+                    
+                        <center>Google</center>
+
+                       </div>
+                       <div style="border: solid black ;width: 90px ; border-radius: 5px; margin-left: 200px;">
+                        <center>Apple</center>
+
+                       </div>
+                    
+                       
+
+
+                        
+                        
+
+            </div>
+        
+
+    </div>
+
+    
+</body>
+</html>

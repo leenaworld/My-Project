@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <script>
+        var mymodule= angular.module("kuchModule",[]);
+        mymodule.controller("kuchController",function($scope,$http)
+      {
+        alert("ok")
+        $scope.jsonArray=[];
+
+      
+       //----------------------
+      
+       $scope.dodeleted=function()
+       {
+       
+            var url="/delete-onesss?emailidKuchs="+$scope.emailid+"&pwdKuch="+$scope.oldpwd+"&newkuch="+$scope.newpwd;
+            
+            $http.get(url).then(allGoodsFx,someBadsFx);
+            function allGoodsFx(response)
+            {
+               alert(JSON.stringify(response.data));//resp in string
+               
+            }
+
+            function someBadsFx(response)
+            {
+                alert(JSON.stringify(response.data));
+            }
+       }
+        
+
+
+       })
+
+      
+
+
+
+    </script>
+    <script>
+      function showUser()
+        { 
+          let activeUser=localStorage.getItem("activeUser");
+          document.getElementById("welcome").innerHTML=activeUser;
+        }
+
+
+
+       function doLogout(){
+        localStorage.removeItem("activeUser");
+        location.href="index.html";
+       }
+    </script>
+</head>
+<body ng-app="kuchModule" ng-controller="kuchController" onload="showUser();" >
+    <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+    <div >welcome
+      <span id="welcome">*</span>
+    </div>
+  </div>
+</nav>
+<div>
+  <center>
+    <h2> Player page</h2>
+  </center>
+</div>
+
+
+    <div class="card" style="width: 18rem; padding: 10px;  margin-top: 80px; float: left;margin-right: 50px;" >
+  <img src="pic/6-Health-Benefits-of-Playing-Sports.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="profile-player.html" class="btn btn-primary">Profile</a>
+  </div>
+  
+</div>
+ <div class="card" style="width: 18rem; padding: 10px; margin-left: 10px; margin-top: 80px; float: left;margin-right: 100px;" >
+  <img src="pic/6-Health-Benefits-of-Playing-Sports.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="tournamentfinder.html" class="btn btn-primary">Explore Event</a>
+  </div>
+  
+</div>
+
+    <div class="card" style="width: 18rem; padding: 10px; margin-left: 10px; margin-top: 80px; float: left;margin-right: 100px;" >
+  <img src="pic/c1a21432-ef0a-48cf-a687-dc0443e38ac8.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#setting">Settings</a>
+  </div>
+  
+</div>
+<div class="card" style="width: 18rem; padding: 10px; margin-left: 5px; margin-top: 80px; float: left;" >
+  <img src="pic/6-Health-Benefits-of-Playing-Sports.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="" class="btn btn-primary" onclick="doLogout();">Log out</a>
+  </div>
+  
+</div>
+
+ 
+ 
+
+<nav class="navbar bg-body-tertiary" style="margin-top: 830px;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Settings</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Emailid <br>
+        <input type="text"  name="email" id="email" ng-model="emailid"><br>
+        Old Password <br>
+        <input type="text"  name="old" id="old" ng-model="oldpwd"><br>
+        New Password<br>
+        <input type="text"  name="new" id="new" ng-model="newpwd"><br>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   <input type="button" class="btn btn-primary" ng-click="dodeleted(obj.emailid,obj.oldpwd,obj.newpwd);" value="update password"></input>
+                  
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+
+    
+</body>
+</html>

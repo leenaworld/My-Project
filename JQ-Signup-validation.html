@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-color: gainsboro;
+        }
+        #box{
+            width: 450px; height: 450px;
+            background-color: white; margin: auto;
+            margin-top: 10%; padding: 10px;
+        }
+        #cross{
+            width: 40px; height: 40px;
+            background-image: url(./pics/cross.png);
+            background-size: contain; float: right;
+        }
+        #login{
+            width: 100px; height: 100px;
+            
+            background-image: url(./pics/userlogin.png); background-size: contain;
+            margin: auto; margin-top: 50px;
+        }
+        #form{
+            width: 430px;
+            /* background-color: antiquewhite; */
+             height: 280px; padding: 10px;
+            
+        }
+        .row{
+            width: 430px; 
+            /* background-color: aquamarine; */
+            margin-bottom: 10px;
+        }
+        input[type="text"],input[type="password"]
+        {
+            width: 90%; line-height: 30px;
+            color: red; font-size: 18px;
+            text-align: center; border: 1px red solid;
+            outline: none;
+        }
+        /* input[type="text"]:focus,input[type="password"]:focus{
+             border: 1px blue solid;
+             box-shadow: 2px 2px 2px gray;
+         }*/
+        label{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 17px; color: red;
+        
+        }
+        .btn{
+            padding: 10px 40px 10px 40px; 
+            border: 1px red solid;
+            background-color: #fff;
+            width: 100px; color:red;
+            cursor: pointer;
+        }
+        .btn:hover{
+            background-color: red;
+            color: white;
+        }
+    </style>
+
+
+
+    <style>
+        .ok{
+            color: green; padding: 1px;  background-color: greenyellow; border-radius: 2px;
+        }
+        .not-ok{
+            color: white; padding: 1px;  background-color: red; border-radius: 2px;
+        }
+        .ok-pic{
+            width: 20px; height: 20px; background-image: url(pics/ok.png); background-size: contain;
+        }
+         .not-ok-pic{
+            width: 20px; height: 20px; background-image: url(pics/cross.png); background-size: contain;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#txtEmail").keyup(function(){
+                let email=$(this).val();//getter
+                    //  let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+                    let regex=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+                if(email=="")
+                    {
+                        $("#errMsgE").html("Empty").addClass("not-ok").removeClass("ok");
+                         $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+                         $(this).focus();
+                    }
+                    else if(regex.test(email)==false)
+                    {
+                        $("#errMsgE").html("Invalid Emailid").addClass("not-ok").removeClass("ok");
+                         $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+                         $(this).focus();
+                    }
+                    else 
+                    {
+                        $("#errMsgE").html("Ok").addClass("ok").removeClass("not-ok");
+                        $("#errPicE").addClass("ok-pic").removeClass("not-ok-pic");
+                    }
+                
+            })
+            //-------------------------
+            $("#txtPwd").blur(function(){
+                    let regex=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+                    let pwd=$(this).val();
+                    if(regex.test(pwd)==true)
+                        $("#lblPwd").html("Theek Hai");
+                    else
+                        $("#lblPwd").html("Wrong Hai");
+            })
+            //========================
+            $("#eye").click(function()
+            {
+                let txt=$("#txtPwd").prop("type");
+                    if(txt=="password")
+                        {
+                            $("#txtPwd").prop("type","text");//type changed
+                            $("#eye").removeClass("fa-eye").addClass("fa-eye-slash");
+                        }
+                    else
+                            {
+                                $("#txtPwd").prop("type","password");
+                                $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+                            }
+
+                            
+            })
+
+            // let regex = /^[789]\d{9}$/;   //for mobile number
+        })
+    </script>
+</head>
+<body>
+    <div id="box">
+          <div id="cross"></div> 
+          <div id="login"></div>
+          <div id="form">
+                <div class="row">
+                    <div class="lbl-div">
+                        <label for="">Email Id</label>
+                       
+                    </div>   
+                    <div class="txtbox-div">
+                        <input type="text" id="txtEmail"> <br>
+                        <div style="display: flex;">
+                            <div style="margin-right: 10px;" id="errPicE"></div> 
+                            <div id="errMsgE">&</div>
+                        </div>
+                    </div> 
+                    
+                </div>
+                <div class="row">
+                    <div class="lbl-div">
+                        <label for="" id="lblPwd">Password</label>
+                    </div>   
+                    <div class="txtbox-div" style="border:1px red solid;width:90%;"> 
+                        <input type="password" style="border:0px" id="txtPwd">
+
+                         <i class="fa-solid fa-eye fa-bounce" id="eye"></i>
+                    </div> 
+                    
+                </div>
+                <div class="row">
+                    <div class="lbl-div">
+                        <label for="">Mobile Number</label>
+                    </div>   
+                    <div class="txtbox-div">
+                        <input type="text">
+                    </div> 
+                    
+                </div>
+                <div class="row" >
+                        <center>
+                            <div class="btn">
+                                <i class="fa-solid fa-user-plus fa-bounce" ></i>
+                                Signup</div>
+                        </center>
+                </div>
+          </div>
+    </div>
+</body>
+</html>

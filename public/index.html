@@ -1,0 +1,398 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .password-wrapper {
+    position: relative;
+    width: 100%;
+    float:left;
+
+  }
+    </style>
+    <script>
+      $("#eye").click(function()
+            {
+                let txt=$("#txtPwd").prop("type");
+                    if(txt=="password")
+                        {
+                            $("#txtPwd").prop("type","text");//type changed
+                            $("#eye").removeClass("fa-eye").addClass("fa-eye-slash");
+                        }
+                    else
+                            {
+                                $("#txtPwd").prop("type","password");
+                                $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+                            }
+
+                            
+            })
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        $("#saved").click(function()
+        
+
+      { let obj={
+        type:"get",
+        url:"/get-one",
+        data:{
+          txtEmail: $("#txtEmail").val(),
+          txtPwd:$("#txtPwd").val(),
+           selects:$("#selects").val(),
+        }
+      }
+      $.ajax(obj).then(
+        
+        function(responseJsonary)
+       
+        { 
+        
+            alert((responseJsonary));
+                 
+        }
+      ).fail(function(err){
+    alert(err.message)})
+    })
+
+      })
+      $(document).ready(function(){
+        $("#saves").click(function(){
+                        let obj={
+                        type:"get",
+                        url:"/chk-email",
+                        data:{
+                            txtEmail1: $("#txtEmail1").val(),
+                            txtPwd1: $("#txtPwd1").val(),
+
+                         
+                                
+                        }
+                    };
+                   $.ajax(obj).then(function(responseJsonary){
+                    
+                        if(response=="blocked")
+                        { alert("responseJsonary");
+
+                        }
+                        else if(response=="invalid")
+                        { alert("responseJsonary");
+
+                        }
+                        else
+                        if(response=="player")
+                        {
+                          localStorage.setItem("activeUser",$("#txtEmail1").val());
+                          location.href="dash-player.html";
+                        }
+                        else
+                        if(response=="organizer")
+                        {
+                          localStorage.setItem("activeUser",$("#txtEmail1").val());
+                          location.href="org-dash.html";
+                        }
+                        else
+                        if(response=="Admin")
+                        {
+                          localStorage.setItem("activeUser",$("#txtEmail1").val());
+                          location.href="dashadmin.html";
+                        }
+                        
+
+                        
+                   }).fail(function(err){
+                        alert("hello");
+                   }) 
+
+                })
+
+ 
+  // 
+  $("#txtEmail").keyup(function () {
+    let email = $(this).val();
+    let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (email === "") {
+      $("#emailMsg").html("Empty");
+    } else if (!regex.test(email)) {
+      $("#emailMsg").html("Invalid Email ID");
+    } else {
+      $("#emailMsg").html("Valid Email ID");
+    }
+  });
+
+  // Password Validation
+  $("#txtPwd").keyup(function () {
+    let password = $(this).val();
+    let regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+    if (password === "") {
+      $("#pwdMsg").html("Empty");
+    } else if (!regex.test(password)) {
+      $("#pwdMsg").html("Invalid Password");
+    } else {
+      $("#pwdMsg").html("Valid Password");
+    }
+  })
+})
+             
+           //----------------------
+          
+            
+
+                
+              
+
+    </script>
+   
+     
+    
+    
+
+
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tournament Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Our services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Four the developers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Reach Us</a>
+        </li>
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 750px;" >
+  Sign up
+</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"   >
+  Login in
+</button>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="pic/138077.jpg" class="d-block w-100" alt="..." height="20%">
+    </div>
+    <div class="carousel-item">
+      <img src="pic/sports-tools.jpg" class="d-block w-100" alt="..." height="20%">
+    </div>
+    <div class="carousel-item">
+      <img src="pic/sports-tools.jpg" class="d-block w-100 h-100" alt="..."  >
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div >
+  
+    <h3><center>Our Service</center></h3>
+    </div>
+  <center>
+<div class="containar mx-auto row  " style="padding-left: 300px; padding-right: 0px;" >
+<div class="card col-md-3 me-3"  >
+  <img src="pic/c1a21432-ef0a-48cf-a687-dc0443e38ac8.jpg" class="card-img-top"  alt="...">
+  <div class="card-body">
+    
+    <p class="card-text">Looking forward to a great tournament. Best of luck to all competitors!You could never be another person but always be a better version of anyone.</p>
+    
+  </div>
+
+</div>
+
+
+<div class="card col-md-3 me-3"   >
+  <img src="pic/Sport_balls.svg.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    
+    <p class="card-text">Organizers welcome all teams and players! Please review the updated schedule and rules on our website.Success is not fatal;failure is not fatal;it is courage to continue,</p>
+    
+  </div>
+</div>
+
+
+<div class="card col-md-3" >
+  <img src="pic/6-Health-Benefits-of-Playing-Sports.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    
+    <p class="card-text">Participants battle it out across multiple rounds to claim victory.Champions know that success is invietable that there is no such thing as failiure,only feedback.</p>
+    
+  </div>
+</div>
+</center> 
+<div >
+  </div>
+
+  <!-- //============================== -->
+    <h3><center>Meet Developer</center></h3>
+    </div>
+  <div class="containar mx-auto row" style="padding-left: 370px; padding-right: 0px;" id="hover1">
+<div class="card col-md-4 me-3" >
+  <img src="pic/1632164170070.jpg"  class="card-img-top" alt="..." >
+  <center>Rajesh Bansal</center>
+  
+</div>
+<div class="card col-md-4 me-3" id="hover2" >
+  <img src="photo/pics/add16.jpg" class="card-img-top" alt="..." style="border-radius: 50%;background-size: cover;">
+ <center>jjj</center>
+</div>
+
+  </div>
+    <h3><center>Reach Us</center></h3>
+    </div>
+  
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3447.8807340362628!2d74.94975317535173!3d30.21195127483967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391732a4f07278a9%3A0x4a0d6293513f98ce!2sBanglore%20Computer%20Education!5e0!3m2!1sen!2sin!4v1753071887698!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+     <!-- Button trigger modal -->
+      <div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Address:Ajit road,Bathinda</h5>
+    <p class="card-text">Contact No.</p>
+    <a href="#" class="btn btn-primary">website:www.</a>
+    <br><br>
+    <a href="#" class="btn btn-primary">instagram</a>
+  </div>
+</div>
+      
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> sign up</h1>
+
+        
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Email ID <br>
+        <input type="text" class="form-control" name="txtEmail" id="txtEmail" ><br> 
+        <span id="emailMsg" style="color:red;">*</span><br>
+        
+        
+        Password <br>
+      
+
+          <input type="password" class="form-control" name="txtPwd" id="txtPwd"  >
+        <i class="fa-solid fa-eye-slash" id="eye"></i> <br>
+                        
+                    
+                    
+
+        <span id="pwdMsg" style="color:red;">*</span><br>
+        
+        User Type <br>
+                    <select id="selects" class="form-control">
+                        <option>Select</option>
+                      
+                        <option >player</option>
+                        <option >organizer</option>
+
+                    </select>
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" name="saved" id="saved">Sign up </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Login in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         Email ID <br>
+        <input type="text" class="form-control" name="txtEmail1" id="txtEmail1" ><br> 
+        Password <br>
+        <input type="text" class="form-control" name="txtPwd1" id="txtPwd1"  > <br>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" name="saves" id="saves">Login in</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+      $("#eye").click(function()
+            {
+                let txt=$("#txtPwd").prop("type");
+                    if(txt=="password")
+                        {
+                            $("#txtPwd").prop("type","text");//type changed
+                            $("#eye").removeClass("fa-eye").addClass("fa-eye-slash");
+                        }
+                    else
+                            {
+                                $("#txtPwd").prop("type","password");
+                                $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+                            }
+
+                            
+            })
+        
+    </script>
+
+
+
+        
+    </body>
+    </html>

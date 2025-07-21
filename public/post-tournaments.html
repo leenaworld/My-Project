@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function(){
+        $("#begin").click(function()
+      { let obj={
+        type:"get",
+        url:"/get-three",
+        data:{
+          email3: $("#email3").val(),
+          event3:$("#event3").val(),
+           date3:$("#date3").val(),
+           time3: $("#time3").val(),
+           inputemail: $("#inputemail").val(),
+           inputemail7: $("#inputemail7").val(),
+           sports:$("#sports").val(),
+           inputzip: $("#inputzip").val(),
+           inputzi: $("#inputzi").val(),
+           inputemail0: $("#inputemail0").val(),
+           inputemail9: $("#inputemail9").val(),
+           inputemail2: $("#inputemail2").val(),
+           inputemail44: $("#inputemail44").val(),
+           village3: $("#village3").val(),
+           
+
+        }
+      }
+      $.ajax(obj).then(
+        function(responseJsonary)
+        { 
+          alert(JSON.stringify(responseJsonary));
+          let email3=$("#email3").val();
+          let event3=$("#event3").val();
+          let date3=$("#date3").val();
+          let time3=$("#time3").val();
+          let inputemail=$("#inputemail").val();
+          let inputemail7=$("#inputemail7").val();
+          let sports=$("#sports").val();
+          alert(sports);
+          let inputzip=$("#inputzip").val();
+          let inputzi=$("#inputzi").val();
+          let inputemail0=$("#inputemail0").val();
+          let inputemail9=$("#inputemail9").val();
+          let inputemail2=$("#inputemail2").val();
+          let inputemail44=$("#inputemail44").val();
+          let village3=$("#village3").val();
+
+
+          alert("success");
+        }
+      ).fail(function(err){
+    alert(err.message);})
+    })
+
+      })
+
+
+    </script>
+    <script>
+      function showUsers()
+      {  
+        let activeUser=localStorage.getItem("activeUser");
+        document.getElementById("email3").value=activeUser;
+      }
+    </script>
+</head>
+<body onload=" showUsers();">
+  <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
+
+    <div> 
+       <center><h2> Tournaments </h2></center>
+    </div>
+    <div class="container">
+    <form class="row g-3">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Emailid</label>
+    <input type="email" class="form-control" id="email3">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Event Title</label>
+    <input type="password" class="form-control" id="event3">
+  </div>
+  <div class="col-6">
+    <label for="inputAddress" class="form-label">Village</label>
+    <input type="text" class="form-control" id="village3" >
+  </div>
+  <div class="col-3">
+    <label for="inputAddress2" class="form-label">Date</label>
+    <input type="date" class="form-control" id="date3" >
+  </div>
+  <div class="col-md-3">
+    <label for="inputCity" class="form-label">Time</label>
+    <input type="time" class="form-control" id="time3">
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">Sports Category</label>
+    <select id="sports"  class="form-select">
+      <option> select</option>
+      <option>cricket</option>
+      <option> basketball</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Min Age</label>
+    <input type="number" class="form-control" id="inputzip">
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Max Age</label>
+    <input type="number" class="form-control" id="inputzi">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Location/Address</label>
+    <input type="email" class="form-control" id="inputemail">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">City</label>
+    <input type="email" class="form-control" id="inputemail7">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Last date of registration</label>
+    <input type="date" class="form-control" id="inputemail0">
+  </div>
+  <div class="col-md-3">
+    <label for="inputEmail4" class="form-label">Fee</label>
+    <input type="number" class="form-control" id="inputemail9">
+  </div>
+  <div class="col-md-3">
+    <label for="inputEmail4" class="form-label">Prize Money</label>
+    <input type="number" class="form-control" id="inputemail2">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Contact Person</label>
+    <input type="text" class="form-control" id="inputemail44">
+  </div>
+  
+  <div class="col-12">
+    <button type="button" class="btn btn-primary" id="begin">Publish Event</button>
+  </div>
+
+</form>
+</div>
+<nav class="navbar bg-body-tertiary" style="margin-top: 270px;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
+
+    
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script>
+        function showPrev(fileRef,prevRef)
+         {
+                         const [file] = fileRef.files
+                            if (file) {
+                                prevRef.src = URL.createObjectURL(file)
+                            }
+        }
+
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+       $(document).ready(function(){
+                $("#apple").click(function()
+                {
+                  
+
+                    let obj={
+                        type:"get",
+                        url:"/get-two",
+                        data:{
+                            inputEmail4: $("#inputEmail4").val()
+                                
+                        }
+                    }
+
+                   
+                    $.ajax(obj).then(
+                        function(responseJsonAry)
+                        {
+                            //alert(JSON.stringify(responseJsonAry) )
+                             let organization=responseJsonAry[0].organization;
+                             let register=responseJsonAry[0].register;
+                             let address=responseJsonAry[0].address;
+                             let city=responseJsonAry[0].city;
+                             let sport=responseJsonAry[0].sport;
+                             let website=responseJsonAry[0].website;
+                             let link=responseJsonAry[0].link;
+                             let head=responseJsonAry[0].head;
+                             let contact=responseJsonAry[0].contact;
+                             let other=responseJsonAry[0].other;
+                             let picurl=responseJsonAry[0].picurl;
+
+
+                             //lert(mobile+"\n"+pwd+"\n "+picurl);
+                             $("#inputPassword4").val(organization);
+                             $("#inputAddress").val(register);
+                             $("#inputAddress2").val(address);
+                             $("#inputCity").val(city);
+                             $("#inputAddress1").val(sport);
+                             $("#inputAddress0").val(website);
+                             $("#inputCit").val(link);
+                             $("#inputZip").val(head);
+                             $("#inputCi").val(contact);
+                             $("#inputC").val(other);
+                             $("#prev").prop("src",picurl);
+
+                            
+
+                        }).fail(function(err){alert(err.message)})
+                })
+              })
+
+    </script>
+    <script>
+      function showUser()
+      {  
+        let activeUser=localStorage.getItem("activeUser");
+        document.getElementById("inputEmail4").value=activeUser;
+      }
+    </script>
+
+</head>
+
+    <body onload="showUser();" >
+      <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
+      <div>
+       <center> <h2>organization details</h2></center>
+      </div>
+    
+      <div class="container row mx-auto">
+        <form action="/send-to-server-safe" class="row" method="post" enctype="multipart/form-data" >
+  <div class="col-md-3">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4" name="Email2">
+    <button type="button" class="btn btn-primary" id="apple">search</button>
+  </div>
+  <div class="col-md-3">
+    <label for="inputPassword4" class="form-label">Org.name</label>
+    <input type="text" class="form-control" id="inputPassword4" name="org">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">registration number</label>
+    <input type="text" class="form-control" id="inputAddress" name="registration">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">address</label>
+    <input type="text" class="form-control" id="inputAddress2"  name="address">
+  </div>
+   <div class="col-12">
+    <label for="inputAddress2" class="form-label">deals in sport</label>
+    <input type="text" class="form-control" id="inputAddress1" name="sport">
+  </div>
+  <div class="col-md-3">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity" name="city">
+  </div>
+  <div class="col-md-3">
+    <label for="inputCity" class="form-label">insta link</label>
+    <input type="text" class="form-control" id="inputCit" name="link">
+  </div>
+ 
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Org.head</label>
+    <input type="text" class="form-control" id="inputZip" name="head">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">website</label>
+    <input type="text" class="form-control" id="inputAddress0" name="website">
+  </div>
+   <div class="col-md-3">
+    <label for="inputCity" class="form-label">contact number</label>
+    <input type="text" class="form-control" id="inputCi" name="contact">
+  </div>
+   <p>
+                registration certificate Pic <br>
+                <input type="file" name="profilePic" id="profilePic" onchange="showPrev(profilePic,prev)"> <br>
+                
+                <img src="photo/pics/agent.jpg" width="100" height="100" id="prev" alt="">
+            </p>
+  <div class="col-md-3">
+    <label for="inputCity" class="form-label">other information</label>
+    <input type="text" class="form-control" id="inputC" name="other">
+  </div>
+  
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">send to server</button>
+    <button type="submit" class="btn btn-primary" formaction="/update-user">modify</button>
+  </div>
+</form>
+
+
+
+        </div>
+         <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+      
+        
+          
+          
+  
+
+    
+</body>
+    
+
+</html>
