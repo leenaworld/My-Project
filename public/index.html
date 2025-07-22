@@ -90,28 +90,21 @@
                     };
                    $.ajax(obj).then(function(responseJsonary){
                     
-                        if(response=="blocked")
-                        { alert("responseJsonary");
-
-                        }
-                        else if(response=="invalid")
-                        { alert("responseJsonary");
-
-                        }
-                        else
-                        if(response=="player")
+                       alert(responseJsonary);
+                        
+                        if(responseJsonary=="player")
                         {
                           localStorage.setItem("activeUser",$("#txtEmail1").val());
                           location.href="dash-player.html";
                         }
                         else
-                        if(response=="organizer")
+                        if(responseJsonary=="organizer")
                         {
                           localStorage.setItem("activeUser",$("#txtEmail1").val());
                           location.href="org-dash.html";
                         }
                         else
-                        if(response=="Admin")
+                        if(responseJsonary=="Admin")
                         {
                           localStorage.setItem("activeUser",$("#txtEmail1").val());
                           location.href="dashadmin.html";
@@ -274,7 +267,7 @@
 </div>
 <div class="card col-md-4 me-3" id="hover2" >
   <img src="photo/pics/add16.jpg" class="card-img-top" alt="..." style="border-radius: 50%;background-size: cover;">
- <center>jjj</center>
+ <center>Leena</center>
 </div>
 
   </div>
@@ -290,7 +283,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">Address:Ajit road,Bathinda</h5>
-    <p class="card-text">Contact No.</p>
+    <p class="card-text">Contact No:6284668025</p>
     <a href="#" class="btn btn-primary">website:www.</a>
     <br><br>
     <a href="#" class="btn btn-primary">instagram</a>
