@@ -147,7 +147,18 @@
     }
   })
 })
-             
+       $("#txtEmail1").keyup(function () {
+    let email = $(this).val();
+    let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (email === "") {
+      $("#emailMsgs").html("Empty");
+    } else if (!regex.test(email)) {
+      $("#emailMsgs").html("Invalid Email ID");
+    } else {
+      $("#emailMsgs").html("Valid Email ID");
+    }
+  });       
            //----------------------
           
             
@@ -352,8 +363,10 @@
       <div class="modal-body">
          Email ID <br>
         <input type="text" class="form-control" name="txtEmail1" id="txtEmail1" ><br> 
+        <span id="emailMsgs" style="color:red;">*</span><br>
         Password <br>
         <input type="text" class="form-control" name="txtPwd1" id="txtPwd1"  > <br>
+        <i class="fa-solid fa-eye-slash" id="eyes"></i> <br>
         
       </div>
       <div class="modal-footer">
@@ -377,6 +390,25 @@
                             {
                                 $("#txtPwd").prop("type","password");
                                 $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+                            }
+
+                            
+            })
+        
+    </script>
+    <script>
+      $("#eyes").click(function()
+            {
+                let txt=$("#txtPwd1").prop("type");
+                    if(txt=="password")
+                        {
+                            $("#txtPwd1").prop("type","text");//type changed
+                            $("#eyes").removeClass("fa-eye").addClass("fa-eye-slash");
+                        }
+                    else
+                            {
+                                $("#txtPwd1").prop("type","password");
+                                $("#eyes").removeClass("fa-eye-slash").addClass("fa-eye");
                             }
 
                             
