@@ -362,10 +362,10 @@
       </div>
       <div class="modal-body">
          Email ID <br>
-        <input type="text" class="form-control" name="txtEmail1" id="txtEmail1" ><br> 
+        <input type="text" class="form-control" name="txtEmail1" id="txtEmail1" >
         <span id="emailMsgs" style="color:red;">*</span><br>
         Password <br>
-        <input type="text" class="form-control" name="txtPwd1" id="txtPwd1"  > <br>
+        <input type="text" class="form-control" name="txtPwd1" id="txtPwd1"  >
         <i class="fa-solid fa-eye-slash" id="eyes"></i> <br>
         
       </div>
@@ -413,6 +413,19 @@
 
                             
             })
+             $("#txtEmail1").keyup(function () {
+    let email = $(this).val();
+    let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (email === "") {
+      $("#emailMsgs").html("Empty");
+    } else if (!regex.test(email)) {
+      $("#emailMsgs").html("Invalid Email ID");
+    } else {
+      $("#emailMsgs").html("Valid Email ID");
+    }
+  });       
+           //--------------
         
     </script>
 
