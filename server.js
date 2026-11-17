@@ -150,7 +150,7 @@ app.post("/picreader", async function (req, resp) {
 
 
 
-let dbConfig ="mysql://avnadmin:AVNS_HDy_MlkHM5RyhmWombw@mysql-62b1ba0-leenamittal225-5b07.c.aivencloud.com:19728/defaultdb?";
+let dbConfig ="mysql://avnadmin:AVNS_Yoy9bHXI_mU20oIjGaq@mysql-1cfa3193-leenamittal225-5b07.g.aivencloud.com:19728/defaultdb?ssl-mode=REQUIRED";
 
 
 let mySqlVen = mysql2.createConnection(dbConfig);
